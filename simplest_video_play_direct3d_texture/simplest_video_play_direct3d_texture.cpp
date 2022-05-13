@@ -68,6 +68,9 @@
 #include <tchar.h>
 #include <d3d9.h>
 
+#pragma comment(lib, "d3d9.lib")
+//#pragma comment(lib, "d3dx9.lib")
+
 //Flexible Vertex Format, FVF
 typedef struct
 {
@@ -90,9 +93,9 @@ IDirect3DVertexBuffer9 *m_pDirect3DVertexBuffer= NULL;
 
 
 //Select one of the Texture mode (Set '1'):
-#define TEXTURE_DEFAULT 0
+#define TEXTURE_DEFAULT 1
 //Rotate the texture
-#define TEXTURE_ROTATE  1
+#define TEXTURE_ROTATE  0
 //Show half of the Texture
 #define TEXTURE_HALF    0
 
@@ -350,7 +353,16 @@ bool Render()
 	m_pDirect3DDevice->EndScene();
 	//Presents the contents of the next buffer in the sequence of back 
 	//buffers owned by the device.
-	m_pDirect3DDevice->Present( NULL, NULL, NULL, NULL );
+	
+	RECT rt;
+	GetClientRect(m_hVideoWnd, &rt);int cWidth  = rt.right - rt.left;int cHeight = rt.bottom - rt.top;
+	//rt.left = rt.left - 1000;
+	//rt.right = rt.right + 1000;//»áµ¼ÖÂÊÓÆµÓÒ²àÐ¡°ë±ßÎÞ·¨ÏÔÊ¾ ²âÊÔÊÓÆµäÖÈ¾ÉìËõ
+	//rt.left += 200; ÊÓÆµÕûÌå×óÒÆ200
+	
+
+
+	m_pDirect3DDevice->Present( NULL, &rt, NULL, NULL );
 	return true;
 }
 

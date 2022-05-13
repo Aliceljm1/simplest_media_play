@@ -8,3 +8,7 @@ simplest_ffmpeg_player_su/Debug/
 simplest_ffmpeg_player_su/Release/
 #¹ıÂË
 *.sdf
+*.db
+*.db-shm
+*.db-wal
+*.opendb
